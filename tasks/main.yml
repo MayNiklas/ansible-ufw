@@ -1,0 +1,4 @@
+---
+# tasks file for ansible-ufw
+- fail:
+    msg: This role is not implemented yet!
