@@ -1,4 +1,28 @@
 ---
 # tasks file for ansible-ufw
-- fail:
-    msg: This role is not implemented yet!
+- name: Make sure UFW is up-to-date
+  pacman:
+    name:
+      - ufw
+    state: latest
+
+- name: Default to deny everything
+  ufw:
+    state: enabled
+    policy: deny
+
+- name: Allow SSH
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Enable UFW on startup
+  systemd:
+    name: ufw
+    enabled: yes
+    masked: no
+
+- name: Start UFW
+  systemd:
+    state: started
+    name: ufw
