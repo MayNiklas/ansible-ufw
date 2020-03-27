@@ -6,15 +6,15 @@
       - ufw
     state: latest
 
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: "22"
+
 - name: Default to deny everything
   ufw:
     state: enabled
     policy: deny
-
-- name: Allow SSH
-  ufw:
-    rule: allow
-    name: OpenSSH
 
 - name: Enable UFW on startup
   systemd:
