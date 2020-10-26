@@ -1,28 +1,33 @@
 ---
 # tasks file for ansible-ufw
 - name: Make sure UFW is up-to-date
+  become: yes
   pacman:
     name:
       - ufw
     state: latest
 
 - name: Allow SSH
+  become: yes
   ufw:
     rule: allow
     port: "22"
 
 - name: Default to deny everything
+  become: yes
   ufw:
     state: enabled
     policy: deny
 
 - name: Enable UFW on startup
+  become: yes
   systemd:
     name: ufw
     enabled: yes
     masked: no
 
 - name: Start UFW
+  become: yes
   systemd:
     state: started
     name: ufw
