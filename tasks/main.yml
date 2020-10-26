@@ -2,7 +2,7 @@
 # tasks file for ansible-ufw
 - name: Make sure UFW is up-to-date
   become: yes
-  pacman:
+  package:
     name:
       - ufw
     state: latest
